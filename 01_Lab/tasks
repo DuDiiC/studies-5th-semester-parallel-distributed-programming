@@ -1,0 +1,3 @@
+1. Napisz program ze zmienna a = 2. Proces glowny tworzy potomny (fork()), ktory zmiena a na 4, wypisuje i konczy dzialanie. Macierzysty czeka na koniec
+procesu potomnego (wait), wypisuje a i konczy działanie.
+2. Analogiczne zadanie z watkami.
