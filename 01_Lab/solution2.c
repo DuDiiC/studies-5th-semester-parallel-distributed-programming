@@ -1,3 +1,9 @@
+/**
+ * Program tworzy watek, dodaje 2 do a i konczy dzialanie.
+ * Watek glowny czeka na zakonczenie nowego watku i wypisuje
+ * wartosc a.
+ */
+
 #include <pthread.h>
 #include <stdio.h>
 #include <unistd.h>

@@ -1,3 +1,7 @@
+/** 
+ * Wypisuje podane napisy w osobnych watkach 
+ */
+
 #include <pthread.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -25,5 +29,6 @@ int main() {
 		zanim nie zostana zakonczone watki thread1 oraz thread2 */
 	pthread_join(thread1, NULL);
 	pthread_join(thread2, NULL);
+	
 	return EXIT_SUCCESS;
 }

@@ -1,3 +1,8 @@
+/**	
+ * Program prezentuje sposob modyfikacji
+ * przy uzyciu zmiennej globalnej 
+ */
+
 #include <pthread.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -24,10 +29,14 @@ void* print_msg(void* arg) {
 
 int main() {
 
-	Arg arg = {3, 2};
 	pthread_t thread;
+	Arg arg = {3, 2};
+
+	/*	do nowego watku przekazujemy strukture */
 	pthread_create(&thread, NULL, &print_msg, (void*)&arg);
+	
 	pthread_join(thread, NULL);
+	
 	printf("%d\n", a);
 
 	return EXIT_SUCCESS;

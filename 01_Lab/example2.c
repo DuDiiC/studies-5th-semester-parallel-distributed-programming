@@ -1,3 +1,7 @@
+/**
+ * Program prezentuje jak zwracac wartosc w z nowego watku do watku nadrzednego 
+ */
+
 #include <pthread.h>
 #include <stdio.h>
 #include <stdlib.h>
