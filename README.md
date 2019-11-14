@@ -10,8 +10,10 @@
 
 ## TWORZENIE WĄTKU:
 
-	int pthread(pthread_t *thread, const pthread_attr_t *attr, void *(*start_routine) (void*), void *arg);
-	
+```c
+int pthread(pthread_t *thread, const pthread_attr_t *attr, void *(*start_routine) (void*), void *arg);
+```
+
 - `*thread` - wskaźnik do wątku, który chcemy utworzyć  
 - `*pthread_attr_t` - parametry wątku  
 - `*start_routine` - funkcja, która wątek wykona  
@@ -23,7 +25,9 @@ W przypadku odpowiedniego wykonania zwraca 0, kod błędu wpw.
 
 ## CZEKANIE NA ZAKOŃCZENIE WĄTKU:
 
-	int pthread_join(pthread_t thread, void **retval);
+```c
+int pthread_join(pthread_t thread, void **retval);
+```
 
 - `thread` - wątek, na zakończenie którego czekamy
 - `**retval` - adres, do którego ma zostać przypisana wartość zwracana przez wątek 'thread' (lub `NULL`)
@@ -36,7 +40,9 @@ W przypadku odpowiedniego wykonania zwraca 0, kod błędu wpw.
 
 ## ODŁĄCZENIE WĄTKU:
 
-	int pthread_detach(pthread_t thread);
+```c
+int pthread_detach(pthread_t thread);
+```
 
 - `thread` - wątek, który zamierzamy odłączyć
 
@@ -44,7 +50,9 @@ W przypadku odpowiedniego wykonania zwraca 0, kod błędu wpw.
 
 ZAKOŃCZENIE AKTUALNEGO WĄTKU:
 
-	void pthread_exit(void *retval);
+```c
+void pthread_exit(void *retval);
+```
 
 - `*retval` - wartość zwracana przez bieżący wątek
 
@@ -54,13 +62,17 @@ ZAKOŃCZENIE AKTUALNEGO WĄTKU:
 
 ## KOŃCZENIE INNEGO WĄTKU
 
-	int pthread_cancel(pthread_t thread);
+```c
+int pthread_cancel(pthread_t thread);
+```
 
 - `thread` - wątek, który chcemy zakończyć
 
 > Aby umożliwić wykonanie tej operacji, należy pozwolić zakończenie bieżącego wątku, poprzez zmianę flagi stanu przy użyciu funkcji:
 
-	int pthread_setcancelstate(int state, int *oldstate);
+```c
+int pthread_setcancelstate(int state, int *oldstate);
+```
 
 - `state` - nowy stan wątku, do wyboru flagi: `PTHREAD_CANCEL_ENABLE`, `PTHREAD_CANCEL_DISABLE`
 - `*oldstate` - poprzedni stan wątku
