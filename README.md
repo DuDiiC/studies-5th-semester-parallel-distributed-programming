@@ -1,81 +1,45 @@
-# Biblioteka **pthread**
+# 1. Biblioteka **pthread**
 
 ---
 
-### NAGŁÓWEK:	`pthread.h`
-### TYP WĄTKU:	`pthread_t`
-### FLAGA KOMPOLACJI: `-lpthread`
-
----
-
-## TWORZENIE WĄTKU:
-
+##### NAGŁÓWEK:	
 ```c
-int pthread(pthread_t *thread, const pthread_attr_t *attr, void *(*start_routine) (void*), void *arg);
+#include <pthread.h>
 ```
-
-- `*thread` - wskaźnik do wątku, który chcemy utworzyć  
-- `*pthread_attr_t` - parametry wątku  
-- `*start_routine` - funkcja, która wątek wykona  
-- `*arg` - argument przekazywany w funkcji 'start_routine'
-
-W przypadku odpowiedniego wykonania zwraca 0, kod błędu wpw.
+##### KOMPOLACJA: 
+    gcc [program] -lpthread
 
 ---
 
-## CZEKANIE NA ZAKOŃCZENIE WĄTKU:
+### Podstawowe operacje na wątkach
 
 ```c
+/* zmienna wątku */
+pthread_t thread;
+
+/* tworzenie wątku */
+int pthread_create(pthread_t *thread, const pthread_attr_t *attr, void *(*start_routine) (void*), void *arg);
+
+/* czekanie na zakończenie wątku przez wątek wywołujący */
 int pthread_join(pthread_t thread, void **retval);
-```
 
-- `thread` - wątek, na zakończenie którego czekamy
-- `**retval` - adres, do którego ma zostać przypisana wartość zwracana przez wątek 'thread' (lub `NULL`)
-
-W przypadku odpowiedniego wykonania zwraca 0, kod błędu wpw.  
-
-> Każdy wątek powinien być połaczony z innym (np. glównym), ponieważ wątek zwalnia swoje zasoby dopiero w momencie wykonania na nim join'a.
-
----
-
-## ODŁĄCZENIE WĄTKU:
-
-```c
+/* oznacza wątek do usunięcia (odłączenia) ????? */
 int pthread_detach(pthread_t thread);
-```
 
-- `thread` - wątek, który zamierzamy odłączyć
-
-> Odłączony wątek zwraca wszystkie zasoby, mimo że nie wykonuje się (a nawet nie można) na nim join'a.
-
-ZAKOŃCZENIE AKTUALNEGO WĄTKU:
-
-```c
+/* kończy bieżący wątek z podaną wartością */
 void pthread_exit(void *retval);
-```
 
-- `*retval` - wartość zwracana przez bieżący wątek
-
-> Aby umożliwić innym wątkom pracę do samego końca, warto wątek główny (w funkcji `main`) kończyć wywołaniem `pthread_exit()`, zamiast `exit()`.
-
----
-
-## KOŃCZENIE INNEGO WĄTKU
-
-```c
+/* kończy podany wątek */
 int pthread_cancel(pthread_t thread);
-```
 
-- `thread` - wątek, który chcemy zakończyć
-
-> Aby umożliwić wykonanie tej operacji, należy pozwolić zakończenie bieżącego wątku, poprzez zmianę flagi stanu przy użyciu funkcji:
-
-```c
+/* zmienia flagę stanu, która pozwala/zabrania 
+ * kończenie wątku z zewnątrz funkcją pthread_cancel()
+ * dostępne stany:
+ * - PTHREAD_CANCEL_ENABLE
+ * - PTHREAD_CANCEL_DISABLE
+ **/
 int pthread_setcancelstate(int state, int *oldstate);
 ```
-
-- `state` - nowy stan wątku, do wyboru flagi: `PTHREAD_CANCEL_ENABLE`, `PTHREAD_CANCEL_DISABLE`
-- `*oldstate` - poprzedni stan wątku
 
 ---
 ---
