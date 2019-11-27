@@ -1,0 +1,3 @@
+kompilowanie przez gcc program.c -fopenmp
+zmiana ilosci watkow przez zmienna srodowiskowo 'export OMP_NUM_THREADS=NUMBER'
+
