@@ -1,3 +1,5 @@
+> UWAGA: Pisanie tego dokumentu zostało zakończone - zajmowało zdecydowanie zbyt dużo czasu, w stosunku do efektów dydaktycznych.
+
 # 1. Biblioteka **`pthread`**
 
 #### NAGŁÓWEK:	
